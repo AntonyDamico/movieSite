@@ -1,0 +1,9 @@
+.title {
+  margin: 15px;
+  font-size: 3.5rem;
+  font-weight: normal;
+
+  &--center{
+    text-align: center;
+  }
+}

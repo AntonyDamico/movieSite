@@ -1,0 +1,34 @@
+.alert {
+  display: inline-block;
+  /* position: fixed; */
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1em;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  z-index: 1;
+  transition: ease 0.25s;
+  transform: scale(0);
+
+
+  &--active {
+    transform: scale(1);
+  }
+
+  &__danger {
+    background: #da4242;
+  }
+
+  &__success {
+    background: #28a745;
+  }
+
+  &__info {
+     background: #17a2b8;
+  }
+}

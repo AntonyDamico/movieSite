@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font: normal 16px;
+  font-family: 'Roboto', sans-serif;
+  background-color: rgb(240, 240, 240);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}

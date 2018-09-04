@@ -14,6 +14,7 @@ userMovieDB.getMovies()
   })
   .catch(err => {
     console.log("algo ha salido mal 15");
+    console.log(err)
   });
 
 // Eventos del form de búsqueda
@@ -66,9 +67,9 @@ ui.movieGrid.addEventListener("click", e => {
     }
     if (ui.removeMovie(selectedMovie, confirmMsg)) {
       if (methodDelete) {
-        userMovieDB.deleteMovie(selectedMovie);
+        userMovieDB.deleteMovie(selectedMovie.id);
       } else {
-        userMovieDB.watchedMovie(selectedMovie);
+        userMovieDB.watchedMovie(selectedMovie.id);
       }
       ui.showAlert(alertMsg, "info");
     }

@@ -27,15 +27,18 @@ class UserMovieDB {
     return movieData
   }
 
-  async deleteMovie(movieData) {
-    const response = await fetch(this.url, {
+  async deleteMovie(movieId) {
+    var csrftoken = Cookies.get('csrftoken')
+    const deleteUrl = this.url + "/" + movieId
+    console.log(deleteUrl)
+    const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/json'
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken
       }
     })
-
     console.log(response)
     const resData = await 'Película Eliminada!'
     return resData

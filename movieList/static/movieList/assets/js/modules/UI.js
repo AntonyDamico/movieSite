@@ -92,6 +92,7 @@ class UI {
     this.movieGrid.appendChild(newMovie)
     this._closeModal()
     this.showAlert('Película Agregada', 'success')
+    console.log(newMovie)
   }
 
   /**
@@ -134,6 +135,7 @@ class UI {
    * @returns {String} HTML de la nueva película
    */
   _createMovie (movie, icon) {
+    console.log(movie)
     let content = `
       <li class="movie card">
         <div class="movie--image-class">

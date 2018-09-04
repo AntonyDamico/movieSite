@@ -1,22 +1,25 @@
 class UserMovieDB {
   constructor() {
-    this.url = 'http://localhost:8000/movies/'
+    this.url = 'http://localhost:8000/movieList/list'
   }
 
   async getMovies() {
+    console.log(this.url)
     const response = await fetch(this.url)
     const responseData = await response.json()
-    console.log(responseData)
+    return responseData
   }
 
   async postMovie(movieData) {
-    console.log(movieData)
     console.log(this._parseData(movieData))
+    var csrftoken = Cookies.get('csrftoken')
+    console.log(csrftoken)
     const rawResponse = await fetch(this.url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
       },
       body: JSON.stringify(this._parseData(movieData))
     })

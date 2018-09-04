@@ -8,7 +8,9 @@ import { userMovieDB } from "./modules/UserMovieDB";
 
 userMovieDB.getMovies()
   .then(res => {
-    ui.addMovie(res[0])
+    res.forEach(movie => {
+      ui.addMovie(movie)
+    });
   })
   .catch(err => {
     console.log("algo ha salido mal 15");

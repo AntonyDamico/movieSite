@@ -1,10 +1,10 @@
 from django.db import models
 
 class Movie(models.Model):
-    imdb_id = models.CharField(max_length=100)
-    title = models.CharField(max_length=100)
-    poster = models.CharField(max_length=500)
-    year = models.CharField(max_length=100)
+    Imdb_id = models.CharField(max_length=100)
+    Title = models.CharField(max_length=100)
+    Poster = models.CharField(max_length=500)
+    Year = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.title
+        return self.Title

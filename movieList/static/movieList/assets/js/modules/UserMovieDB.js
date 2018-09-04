@@ -43,10 +43,10 @@ class UserMovieDB {
 
   _parseData(movieData) {
     return {
-      imdb_id: movieData.imdbID,
-      title: movieData.Title,
-      poster: movieData.Poster,
-      year: movieData.Year
+      Imdb_id: movieData.imdbID,
+      Title: movieData.Title,
+      Poster: movieData.Poster,
+      Year: movieData.Year
     }
   }
 }

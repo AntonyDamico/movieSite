@@ -2,8 +2,6 @@ import { openMovieDB } from "./modules/OpenMovieDB";
 import { ui } from "./modules/UI";
 import { userMovieDB } from "./modules/UserMovieDB";
 
-
-
 // Eventos del form de búsqueda
 ui.searchBtn.addEventListener("click", e => {
   e.preventDefault();
@@ -60,5 +58,19 @@ ui.movieGrid.addEventListener("click", e => {
       }
       ui.showAlert(alertMsg, "info");
     }
+  }
+});
+
+ui.watchedButton.addEventListener("click", e => {
+  if (!e.target.classList.contains("link__active")) {
+    ui.changeLinkState(ui.watchedButton);
+    ui.changeLinkState(ui.toWatchButton);
+  }
+});
+
+ui.toWatchButton.addEventListener("click", e => {
+  if (!e.target.classList.contains("link__active")) {
+    ui.changeLinkState(ui.watchedButton);
+    ui.changeLinkState(ui.toWatchButton);
   }
 });

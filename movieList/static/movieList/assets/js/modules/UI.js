@@ -7,6 +7,8 @@ class UI {
     this.alertContainer = document.querySelector('.alert')
     this.modal = document.querySelector('.modal')
     this.modalContent = document.querySelector('.modal__content')
+    this.toWatchButton = document.querySelector('#to-watch')
+    this.watchedButton = document.querySelector('#watched')
   }
 
   /**
@@ -186,6 +188,10 @@ class UI {
 
   _getLoadingAnimation () {
     return `<div class="loading__dual-ring"></div>`
+  }
+
+  changeLinkState(link) {
+    link.classList.toggle("link__active")
   }
 }
 

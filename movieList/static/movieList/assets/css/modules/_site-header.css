@@ -14,7 +14,24 @@
     flex-direction: row;
   }
 
+  &__container {
+    display: flex;
+    flex-direction: column
+  }
+
+  &__header-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+  }
+
   &__title {
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 10px 0;
+  }
+
+  &__subtitle {
     text-transform: uppercase;
     font-weight: normal;
     margin: 10px 0;

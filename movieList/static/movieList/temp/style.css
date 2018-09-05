@@ -60,7 +60,24 @@ ul {
 }
   }
 
+.site-header__container {
+    display: flex;
+    flex-direction: column
+  }
+
+.site-header__header-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around
+  }
+
 .site-header__title {
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 10px 0;
+  }
+
+.site-header__subtitle {
     text-transform: uppercase;
     font-weight: normal;
     margin: 10px 0;
@@ -235,14 +252,15 @@ ul {
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 40px auto;
+  margin: 100px auto 40px auto;
   width: 100%;
 }
 
 @media (min-width: 800px) {
 
 .search-form {
-    width: 60%
+    width: 60%;
+    margin-top: 100px
 }
   }
 
@@ -399,3 +417,19 @@ ul {
       text-decoration: none;
       cursor: pointer;
     }
+
+.link  {
+
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.link:hover {
+    opacity: 0.5;
+  }
+
+.link__active {
+    background-color: #3f51b5;
+    color: white;
+    
+  }

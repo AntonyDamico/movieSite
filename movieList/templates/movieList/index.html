@@ -16,12 +16,18 @@
 
 <body>
   <header class="site-header">
-    <h2 class="site-header__title">Lista de Películas</h2>
+    <div class="site-header__container">
+      <h2 class="site-header__title">Lista de Películas</h2>
+      <div class="site-header__header-options">
+        <h3 class="site-header__title"><a class="link link__active" id="to-watch">Lista</a></h3>
+        <h3 class="site-header__title"><a class="link" id="watched">Vistas</a></h3>
+      </div>
+    </div>
   </header>
 
   <div class="container">
 
-    
+
     <form class="search-form">
       <input class="search-form__input" type="text" id="search-movie-input" placeholder="Buscar Película">
       <button class="btn" id="search-movie-btn">Buscar</button>
@@ -32,21 +38,21 @@
     <ul class="grid" id="movie-grid">
 
       {% for movie in movies %}
-        <li id="{{movie.id}}" class="movie">	      
-            <div class="movie--image-class">	
-              <img src="{{movie.Poster}}">	
-            </div>	
-            <i class="fas fa-check fa-4x movie__watched-icon"></i>	
-            <i class="far fa-times-circle fa-4x movie__delete-icon"></i>	
-            <div class="movie__info">	
-              <h3>{{movie.Title}}</h3>	
-              <p>{{movie.Year}}</p>	
-            </div>	
-          </li>
+      <li id="{{movie.id}}" class="movie">
+        <div class="movie--image-class">
+          <img src="{{movie.Poster}}">
+        </div>
+        <i class="fas fa-check fa-4x movie__watched-icon"></i>
+        <i class="far fa-times-circle fa-4x movie__delete-icon"></i>
+        <div class="movie__info">
+          <h3>{{movie.Title}}</h3>
+          <p>{{movie.Year}}</p>
+        </div>
+      </li>
       {% endfor %}
 
 
-      
+
     </ul>
 
 

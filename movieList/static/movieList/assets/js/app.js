@@ -2,20 +2,7 @@ import { openMovieDB } from "./modules/OpenMovieDB";
 import { ui } from "./modules/UI";
 import { userMovieDB } from "./modules/UserMovieDB";
 
-// window.onload = function () {
-//   console.log(userMovieDB.getMovies())
-// }
 
-userMovieDB.getMovies()
-  .then(res => {
-    res.forEach(movie => {
-      ui.addMovie(movie)
-    });
-  })
-  .catch(err => {
-    console.log("algo ha salido mal 15");
-    console.log(err)
-  });
 
 // Eventos del form de búsqueda
 ui.searchBtn.addEventListener("click", e => {

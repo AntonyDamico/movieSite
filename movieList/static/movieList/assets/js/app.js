@@ -62,15 +62,24 @@ ui.movieGrid.addEventListener("click", e => {
 });
 
 ui.watchedButton.addEventListener("click", e => {
-  if (!e.target.classList.contains("link__active")) {
-    ui.changeLinkState(ui.watchedButton);
-    ui.changeLinkState(ui.toWatchButton);
-  }
+  changedMoviesDisplayed(true, e.target);
 });
 
 ui.toWatchButton.addEventListener("click", e => {
-  if (!e.target.classList.contains("link__active")) {
+  changedMoviesDisplayed(false, e.target);
+});
+
+function changedMoviesDisplayed(bool, target) {
+  if (!target.classList.contains("link__active")) {
     ui.changeLinkState(ui.watchedButton);
     ui.changeLinkState(ui.toWatchButton);
+    ui.cleanGrid();
+    userMovieDB.getMovies().then(movies => {
+      movies.forEach(movie => {
+        if (movie.Watched === bool) {
+          ui.showMovie(movie);
+        }
+      });
+    });
   }
-});
+}

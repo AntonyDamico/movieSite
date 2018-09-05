@@ -88,12 +88,20 @@ class UI {
    * @param {JSON} movie - película que se va a agregar
    */
   addMovie (movie) {
+    // const dummyDiv = document.createElement('div')
+    // dummyDiv.innerHTML = this._createMovie(movie, 'list').trim()
+    // const newMovie = dummyDiv.firstChild
+    // this.movieGrid.appendChild(newMovie)
+    this.showMovie(movie)
+    this._closeModal()
+    this.showAlert('Película Agregada', 'success')
+  }
+
+  showMovie (movie) {
     const dummyDiv = document.createElement('div')
     dummyDiv.innerHTML = this._createMovie(movie, 'list').trim()
     const newMovie = dummyDiv.firstChild
     this.movieGrid.appendChild(newMovie)
-    this._closeModal()
-    this.showAlert('Película Agregada', 'success')
   }
 
   /**
@@ -192,6 +200,10 @@ class UI {
 
   changeLinkState(link) {
     link.classList.toggle("link__active")
+  }
+
+  cleanGrid() {
+    this.movieGrid.innerHTML = ""
   }
 }
 

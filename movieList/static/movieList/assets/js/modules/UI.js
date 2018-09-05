@@ -145,7 +145,7 @@ class UI {
    */
   _createMovie (movie, icon) {
     let content = `
-      <li id="${movie.id}" class="movie card">
+      <li id="${movie.Imdb_id}" class="movie card">
         <div class="movie--image-class">
           <img src="${movie.Poster}">
         </div>`

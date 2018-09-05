@@ -39,7 +39,7 @@
 
       {% for movie in movies %}
       {% if not movie.Watched %}
-      <li id="{{movie.id}}" class="movie">
+      <li id="{{movie.Imdb_id}}" class="movie">
         <div class="movie--image-class">
           <img src="{{movie.Poster}}">
         </div>

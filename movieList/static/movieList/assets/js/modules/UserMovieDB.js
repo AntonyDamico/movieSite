@@ -11,8 +11,8 @@ class UserMovieDB {
   }
 
   async postMovie(movieData) {
-    console.log(this._parseData(movieData))
-    var csrftoken = Cookies.get('csrftoken')
+    // console.log(this._parseData(movieData))
+    const csrftoken = Cookies.get('csrftoken')
     console.log(csrftoken)
     const rawResponse = await fetch(this.url, {
       method: 'POST',

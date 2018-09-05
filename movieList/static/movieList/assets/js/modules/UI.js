@@ -7,6 +7,8 @@ class UI {
     this.alertContainer = document.querySelector('.alert')
     this.modal = document.querySelector('.modal')
     this.modalContent = document.querySelector('.modal__content')
+    this.toWatchButton = document.querySelector('#to-watch')
+    this.watchedButton = document.querySelector('#watched')
   }
 
   /**
@@ -86,12 +88,20 @@ class UI {
    * @param {JSON} movie - película que se va a agregar
    */
   addMovie (movie) {
+    // const dummyDiv = document.createElement('div')
+    // dummyDiv.innerHTML = this._createMovie(movie, 'list').trim()
+    // const newMovie = dummyDiv.firstChild
+    // this.movieGrid.appendChild(newMovie)
+    this.showMovie(movie)
+    this._closeModal()
+    this.showAlert('Película Agregada', 'success')
+  }
+
+  showMovie (movie) {
     const dummyDiv = document.createElement('div')
     dummyDiv.innerHTML = this._createMovie(movie, 'list').trim()
     const newMovie = dummyDiv.firstChild
     this.movieGrid.appendChild(newMovie)
-    this._closeModal()
-    this.showAlert('Película Agregada', 'success')
   }
 
   /**
@@ -135,7 +145,7 @@ class UI {
    */
   _createMovie (movie, icon) {
     let content = `
-      <li id="${movie.id}" class="movie card">
+      <li id="${movie.imdbID}" class="movie card">
         <div class="movie--image-class">
           <img src="${movie.Poster}">
         </div>`
@@ -186,6 +196,14 @@ class UI {
 
   _getLoadingAnimation () {
     return `<div class="loading__dual-ring"></div>`
+  }
+
+  changeLinkState(link) {
+    link.classList.toggle("link__active")
+  }
+
+  cleanGrid() {
+    this.movieGrid.innerHTML = ""
   }
 }
 

@@ -3,11 +3,12 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 40px auto;
+  margin: 100px auto 40px auto;
   width: 100%;
 
   @mixin atMedium {
     width: 60%;
+    margin-top: 100px
   }
 
   &__input {

@@ -11,8 +11,8 @@ class UserMovieDB {
   }
 
   async postMovie(movieData) {
-    console.log(this._parseData(movieData))
-    var csrftoken = Cookies.get('csrftoken')
+    // console.log(this._parseData(movieData))
+    const csrftoken = Cookies.get('csrftoken')
     console.log(csrftoken)
     const rawResponse = await fetch(this.url, {
       method: 'POST',
@@ -28,9 +28,9 @@ class UserMovieDB {
   }
 
   async deleteMovie(movieId) {
+    console.log('movie id: ' + movieId)
     var csrftoken = Cookies.get('csrftoken')
     const deleteUrl = this.url + "/" + movieId
-    console.log(deleteUrl)
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
@@ -44,9 +44,24 @@ class UserMovieDB {
     return resData
   }
 
+  async watchedMovie(movieId) {
+    var csrftoken = Cookies.get('csrftoken')
+    const watchedUrl = this.url + "/watched/" + movieId
+    const response = await fetch(watchedUrl, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken
+      }
+    })
+    console.log(response)
+    return response;
+  }
+
   _parseData(movieData) {
     return {
-      Imdb_id: movieData.imdbID,
+      imdbID: movieData.imdbID,
       Title: movieData.Title,
       Poster: movieData.Poster,
       Year: movieData.Year

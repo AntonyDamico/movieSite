@@ -44,8 +44,8 @@ class MovieDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-def watch_movie(reuqest, Imdb_id):
-    selected_movie = get_object_or_404(Movie, pk=Imdb_id)
+def watch_movie(reuqest, imdbID):
+    selected_movie = get_object_or_404(Movie, pk=imdbID)
     selected_movie.Watched = not selected_movie.Watched
     selected_movie.save()
-    return  HttpResponse('hello ', Imdb_id)
+    return  HttpResponse('hello ', imdbID)

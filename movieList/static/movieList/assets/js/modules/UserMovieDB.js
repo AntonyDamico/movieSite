@@ -28,9 +28,9 @@ class UserMovieDB {
   }
 
   async deleteMovie(movieId) {
+    console.log('movie id: ' + movieId)
     var csrftoken = Cookies.get('csrftoken')
     const deleteUrl = this.url + "/" + movieId
-    console.log(deleteUrl)
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
@@ -61,7 +61,7 @@ class UserMovieDB {
 
   _parseData(movieData) {
     return {
-      Imdb_id: movieData.imdbID,
+      imdbID: movieData.imdbID,
       Title: movieData.Title,
       Poster: movieData.Poster,
       Year: movieData.Year

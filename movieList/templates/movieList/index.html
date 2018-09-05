@@ -38,6 +38,7 @@
     <ul class="grid" id="movie-grid">
 
       {% for movie in movies %}
+      {% if not movie.Watched %}
       <li id="{{movie.id}}" class="movie">
         <div class="movie--image-class">
           <img src="{{movie.Poster}}">
@@ -49,6 +50,7 @@
           <p>{{movie.Year}}</p>
         </div>
       </li>
+      {% endif %}
       {% endfor %}
 
 

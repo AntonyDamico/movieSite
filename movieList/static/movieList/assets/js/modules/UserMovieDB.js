@@ -44,6 +44,21 @@ class UserMovieDB {
     return resData
   }
 
+  async watchedMovie(movieId) {
+    var csrftoken = Cookies.get('csrftoken')
+    const watchedUrl = this.url + "/watched/" + movieId
+    const response = await fetch(watchedUrl, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken
+      }
+    })
+    console.log(response)
+    return response;
+  }
+
   _parseData(movieData) {
     return {
       Imdb_id: movieData.imdbID,

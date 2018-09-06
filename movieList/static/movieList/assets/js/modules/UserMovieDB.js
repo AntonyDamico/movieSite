@@ -1,22 +1,23 @@
 class UserMovieDB {
-  constructor() {
+  constructor () {
     this.url = 'http://localhost:8000/movieList/list'
   }
 
-  async getMovies() {
+  async getMovies () {
     const response = await fetch(this.url)
     const responseData = await response.json()
     return responseData
   }
 
-  async postMovie(movieData) {
+  async postMovie (movieData) {
+    // eslint-disable-next-line no-undef
     const csrftoken = Cookies.get('csrftoken')
     const rawResponse = await fetch(this.url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        'X-CSRFToken': csrftoken,
+        'X-CSRFToken': csrftoken
       },
       body: JSON.stringify(this._parseData(movieData))
     })
@@ -24,9 +25,10 @@ class UserMovieDB {
     return movieData
   }
 
-  async deleteMovie(movieId) {
-    var csrftoken = Cookies.get('csrftoken')
-    const deleteUrl = this.url + "/" + movieId
+  async deleteMovie (movieId) {
+    // eslint-disable-next-line no-undef
+    const csrftoken = Cookies.get('csrftoken')
+    const deleteUrl = this.url + '/' + movieId
     const response = await fetch(deleteUrl, {
       method: 'DELETE',
       headers: {
@@ -35,13 +37,14 @@ class UserMovieDB {
         'X-CSRFToken': csrftoken
       }
     })
-    const resData = await 'Película Eliminada!'
-    return resData
+    // const resData = await 'Película Eliminada!'
+    return response
   }
 
-  async watchedMovie(movieId) {
-    var csrftoken = Cookies.get('csrftoken')
-    const watchedUrl = this.url + "/watched/" + movieId
+  async watchedMovie (movieId) {
+    // eslint-disable-next-line no-undef
+    const csrftoken = Cookies.get('csrftoken')
+    const watchedUrl = this.url + '/watched/' + movieId
     const response = await fetch(watchedUrl, {
       method: 'PUT',
       headers: {
@@ -50,10 +53,10 @@ class UserMovieDB {
         'X-CSRFToken': csrftoken
       }
     })
-    return response;
+    return response
   }
 
-  _parseData(movieData) {
+  _parseData (movieData) {
     return {
       imdbID: movieData.imdbID,
       Title: movieData.Title,

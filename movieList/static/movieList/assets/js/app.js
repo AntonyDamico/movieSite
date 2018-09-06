@@ -1,91 +1,91 @@
-import { openMovieDB } from "./modules/OpenMovieDB";
-import { ui } from "./modules/UI";
-import { userMovieDB } from "./modules/UserMovieDB";
+import { openMovieDB } from './modules/OpenMovieDB'
+import { ui } from './modules/UI'
+import { userMovieDB } from './modules/UserMovieDB'
 
 // Eventos del form de búsqueda
-ui.searchBtn.addEventListener("click", e => {
-  e.preventDefault();
-  const input = ui.searchInput.value;
+ui.searchBtn.addEventListener('click', e => {
+  e.preventDefault()
+  const input = ui.searchInput.value
   if (input) {
-    ui.showAlert("Cangando Películas", "info");
+    ui.showAlert('Cangando Películas', 'info')
     openMovieDB
       .searchMovie(input)
       .then(res => ui.showSearch(res.Search))
       .catch(err => {
-        console.log(err + " linea 13 app.js");
-        ui.showAlert("Algo ha salido mal, intente de nuevo", "danger");
-      });
+        console.log(err + ' linea 13 app.js')
+        ui.showAlert('Algo ha salido mal, intente de nuevo', 'danger')
+      })
   } else {
-    ui.showAlert("Ingrese el nombre", "danger");
+    ui.showAlert('Ingrese el nombre', 'danger')
   }
-});
+})
 
 // Evento en el modal para agregar una película
-ui.modalContent.addEventListener("click", e => {
-  if (e.target.classList.contains("fa-eye")) {
-    ui.loadingAddMovie();
+ui.modalContent.addEventListener('click', e => {
+  if (e.target.classList.contains('fa-eye')) {
+    ui.loadingAddMovie()
     ui.getMovieId(e.target, openMovieDB.currentSearch)
       .then(id => openMovieDB.getMovieById(id))
       .then(movieData => userMovieDB.postMovie(movieData))
       .then(movie => {
-        if(movie.status !== 400) {
+        if (movie.status !== 400) {
           ui.addMovie(movie)
         } else {
           ui.alertMovieInList()
         }
       })
       .catch(err => {
-        console.log(err + " linea 28 app.js");
-        ui.showAlert("Algo ha salido mal, intente de nuevo", "danger");
-        ui._closeModal();
-      });
+        console.log(err + ' linea 28 app.js')
+        ui.showAlert('Algo ha salido mal, intente de nuevo', 'danger')
+        ui._closeModal()
+      })
   }
-});
+})
 
 // Evento en la lista de películas para quitar o dejar vista alguna
-ui.movieGrid.addEventListener("click", e => {
-  if (e.target.tagName.toLowerCase() === "i") {
-    let selectedMovie = e.target.parentElement;
-    let confirmMsg = "¿Desea quitar la película?";
-    let alertMsg = "Película Eliminada";
+ui.movieGrid.addEventListener('click', e => {
+  if (e.target.tagName.toLowerCase() === 'i') {
+    let selectedMovie = e.target.parentElement
+    let confirmMsg = '¿Desea quitar la película?'
+    let alertMsg = 'Película Eliminada'
     // Si es 1 significa que se quiere eliminar la película
-    let methodDelete = 1;
-    if (e.target.classList.contains("fa-check")) {
-      confirmMsg = "¿Desea agregar a películas vistas?";
-      alertMsg = "Película Agregada a Vistas";
+    let methodDelete = 1
+    if (e.target.classList.contains('fa-check')) {
+      confirmMsg = '¿Desea agregar a películas vistas?'
+      alertMsg = 'Película Agregada a Vistas'
       // Si es 0 significa que solo se quiere enviar a vistas
-      methodDelete = 0;
+      methodDelete = 0
     }
     if (ui.removeMovie(selectedMovie, confirmMsg)) {
       if (methodDelete) {
-        userMovieDB.deleteMovie(selectedMovie.id);
+        userMovieDB.deleteMovie(selectedMovie.id)
       } else {
-        userMovieDB.watchedMovie(selectedMovie.id);
+        userMovieDB.watchedMovie(selectedMovie.id)
       }
-      ui.showAlert(alertMsg, "info");
+      ui.showAlert(alertMsg, 'info')
     }
   }
-});
+})
 
-ui.watchedButton.addEventListener("click", e => {
-  changedMoviesDisplayed(true, e.target);
-});
+ui.watchedButton.addEventListener('click', e => {
+  changedMoviesDisplayed(true, e.target)
+})
 
-ui.toWatchButton.addEventListener("click", e => {
-  changedMoviesDisplayed(false, e.target);
-});
+ui.toWatchButton.addEventListener('click', e => {
+  changedMoviesDisplayed(false, e.target)
+})
 
-function changedMoviesDisplayed(bool, target) {
-  if (!target.classList.contains("link__active")) {
-    ui.changeLinkState(ui.watchedButton);
-    ui.changeLinkState(ui.toWatchButton);
-    ui.cleanGrid();
+function changedMoviesDisplayed (bool, target) {
+  if (!target.classList.contains('link__active')) {
+    ui.changeLinkState(ui.watchedButton)
+    ui.changeLinkState(ui.toWatchButton)
+    ui.cleanGrid()
     userMovieDB.getMovies().then(movies => {
       movies.forEach(movie => {
         if (movie.Watched === bool) {
-          ui.showMovie(movie);
+          ui.showMovie(movie)
         }
-      });
-    });
+      })
+    })
   }
 }

@@ -4,16 +4,13 @@ class UserMovieDB {
   }
 
   async getMovies() {
-    console.log(this.url)
     const response = await fetch(this.url)
     const responseData = await response.json()
     return responseData
   }
 
   async postMovie(movieData) {
-    // console.log(this._parseData(movieData))
     const csrftoken = Cookies.get('csrftoken')
-    console.log(csrftoken)
     const rawResponse = await fetch(this.url, {
       method: 'POST',
       headers: {
@@ -23,12 +20,11 @@ class UserMovieDB {
       },
       body: JSON.stringify(this._parseData(movieData))
     })
-    console.log(rawResponse)
+    movieData.status = rawResponse.status
     return movieData
   }
 
   async deleteMovie(movieId) {
-    console.log('movie id: ' + movieId)
     var csrftoken = Cookies.get('csrftoken')
     const deleteUrl = this.url + "/" + movieId
     const response = await fetch(deleteUrl, {
@@ -39,7 +35,6 @@ class UserMovieDB {
         'X-CSRFToken': csrftoken
       }
     })
-    console.log(response)
     const resData = await 'Película Eliminada!'
     return resData
   }
@@ -55,7 +50,6 @@ class UserMovieDB {
         'X-CSRFToken': csrftoken
       }
     })
-    console.log(response)
     return response;
   }
 

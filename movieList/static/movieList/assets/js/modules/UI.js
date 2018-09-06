@@ -205,6 +205,11 @@ class UI {
   cleanGrid() {
     this.movieGrid.innerHTML = ""
   }
+
+  alertMovieInList() {
+    this._closeModal()
+    this.showAlert('La película ya está agregada', 'info')
+  }
 }
 
 export const ui = new UI()

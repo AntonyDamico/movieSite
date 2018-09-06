@@ -27,7 +27,13 @@ ui.modalContent.addEventListener("click", e => {
     ui.getMovieId(e.target, openMovieDB.currentSearch)
       .then(id => openMovieDB.getMovieById(id))
       .then(movieData => userMovieDB.postMovie(movieData))
-      .then(res => ui.addMovie(res))
+      .then(movie => {
+        if(movie.status !== 400) {
+          ui.addMovie(movie)
+        } else {
+          ui.alertMovieInList()
+        }
+      })
       .catch(err => {
         console.log(err + " linea 28 app.js");
         ui.showAlert("Algo ha salido mal, intente de nuevo", "danger");
@@ -46,7 +52,7 @@ ui.movieGrid.addEventListener("click", e => {
     let methodDelete = 1;
     if (e.target.classList.contains("fa-check")) {
       confirmMsg = "¿Desea agregar a películas vistas?";
-      alertMsg = "Película Agregada a Vistos";
+      alertMsg = "Película Agregada a Vistas";
       // Si es 0 significa que solo se quiere enviar a vistas
       methodDelete = 0;
     }

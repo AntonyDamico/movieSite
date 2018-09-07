@@ -11,6 +11,7 @@
 *.sass-cache
 node_modules/
 .tmp/
+.testenv/*
 
 # OS or Editor folders
 .DS_Store

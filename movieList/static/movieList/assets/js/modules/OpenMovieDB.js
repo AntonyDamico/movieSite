@@ -1,7 +1,7 @@
 class OpenMovieDB {
   constructor () {
     this.apiKey = 'thewdb'
-    this.baseUrl = 'http://www.omdbapi.com/'
+    this.baseUrl = 'https://www.omdbapi.com/'
     this.currentSearch = ''
   }
 

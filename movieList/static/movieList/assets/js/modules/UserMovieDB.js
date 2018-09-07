@@ -1,6 +1,6 @@
 class UserMovieDB {
   constructor () {
-    this.url = 'http://localhost:8000/movieList/list'
+    this.url = 'https://lit-hamlet-85099.herokuapp.com/movieList/list'
   }
 
   async getMovies () {
